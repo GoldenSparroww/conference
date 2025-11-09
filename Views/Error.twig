@@ -1,0 +1,51 @@
+{% extends 'Base.twig' %}
+
+{% block title %}Chyba | {{ error_code is defined ? error_code : 'Neznámá chyba' }}{% endblock %}
+
+{% block content %}
+    <div class="p-5 mb-4 bg-danger text-white rounded-3">
+        <div class="container-fluid py-5 text-center">
+            <h1 class="display-1 fw-bold">
+                {% if error_code is defined %}
+                    {{ error_code }}
+                {% else %}
+                    Chyba
+                {% endif %}
+            </h1>
+            <p class="fs-3">
+                {% if error_message is defined %}
+                    {{ error_message }}
+                {% else %}
+                    Omlouváme se, došlo k chybě.
+                {% endif %}
+            </p>
+            <a href="/" class="btn btn-light btn-lg mt-3">
+                Zpět na Homepage
+            </a>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h2>Co můžete dělat dál?</h2>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <h3>Domovská stránka</h3>
+            <p>Vraťte se na hlavní stránku a zkuste se navigovat znovu.</p>
+            <a href="/" class="btn btn-outline-primary">Přejít</a>
+        </div>
+        <div class="col-md-4">
+            <h3>Obnovit stránku</h3>
+            <p>Někdy pomůže prosté obnovení (refresh) stránky.</p>
+            <button class="btn btn-outline-secondary" onclick="window.location.reload();">Obnovit</button>
+        </div>
+        <div class="col-md-4">
+            <h3>Kontakt</h3>
+            <p>Pokud chyba přetrvává, kontaktujte správce webu.</p>
+            <a href="/contact" class="btn btn-outline-info">Kontaktovat</a>
+        </div>
+    </div>
+{% endblock %}

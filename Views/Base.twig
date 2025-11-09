@@ -10,6 +10,9 @@
     {# Zde se načítá Bootstrap CSS #}
     {# Protože adresář Public je kořenem celého webu (tzv. Document Root), musí se použít absolutní cestu začínající lomítkem (/). #}
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    {# (placeholder pro dodatečné budoucí CSS) #}
+    {% block stylesheets %}{% endblock %}
 </head>
 <body>
 
@@ -48,6 +51,9 @@
 
 {# Zde se načítá Bootstrap JavaScript #}
 <script src="/js/bootstrap.bundle.min.js"></script>
+
+{# (placeholder pro dodatečné budoucí JS) #}
+{% block javascripts %}{% endblock %}
 
 </body>
 </html>

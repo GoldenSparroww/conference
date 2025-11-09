@@ -5,6 +5,8 @@ use App\Core\Controller;
 
 class HomeController extends Controller {
     public function index(): void {
-        $this->view('Home.twig', ['title' => 'Vítej na webu']);
+        echo $this->view->render('Home.twig', [
+            'title' => 'Vítej na webu',
+        ]);
     }
 }
