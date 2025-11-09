@@ -2,7 +2,7 @@
 namespace App\Core;
 
 class Router {
-    public function run() {
+    public function run(): void {
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         $segments = explode('/', $uri);
 
