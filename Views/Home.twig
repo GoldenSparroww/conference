@@ -1,0 +1,54 @@
+{# 1. Řekneme Twigu, že tato šablona používá kostru z base.html.twig #}
+{% extends 'Base.twig' %}
+
+{# 2. Přepíšeme blok 'title' pro specifický titulek stránky #}
+{% block title %}Vítejte na hlavní stránce{% endblock %}
+
+{# 3. Přepíšeme klíčový blok 'content' #}
+{% block content %}
+
+    {# Bootstrap Jumbotron (Card) #}
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Vítejte!</h1>
+            <p class="col-md-8 fs-4">Toto je vaše nová, čistá homepage s Bootstrapem a Twigem. Je připravena k použití.</p>
+            <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Zobrazit Modal
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>MVC</h2>
+            <p>Architektura Model-View-Controller zajišťuje přehlednou separaci kódu.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Twig</h2>
+            <p>Šablonovací engine, který odděluje PHP logiku od prezentace (HTML).</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Bootstrap</h2>
+            <p>Rychlé a responzivní stylování díky připraveným CSS a JS komponentám.</p>
+        </div>
+    </div>
+
+    {# Příklad Bootstrap Modal komponenty (vyžaduje JS) #}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Modal zpráva. Ukázka, že JavaScript Bootstrapu funguje!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

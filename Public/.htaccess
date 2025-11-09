@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    # TODO, komentáře
+    # Zapne mod_rewrite
+    RewriteEngine On
+
+    # Pokud požadavek míří na existující soubor (např. CSS, JS, obrázek), neprováděj přepis
+    # Celý řádek říká: "Proveď další krok, POKUD požadovaná cesta NENÍ existující soubor."
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Pokud požadavek míří na existující adresář, neprováděj přepis
+    # Celý řádek říká: "Proveď další krok, POKUD požadovaná cesta NENÍ existující adresář."
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Přepiš všechny ostatní požadavky na index.php.
+    # Parametr [L] znamená "Last Rule" a [QSA] znamená "Query String Append" (připojí parametry)
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>

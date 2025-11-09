@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {# Titulek stránky - blok pro přepsání v konkrétní šabloně #}
+    <title>{% block title %}Default Title{% endblock %}</title>
+
+    {# Zde se načítá Bootstrap CSS #}
+    {# Protože adresář Public je kořenem celého webu (tzv. Document Root), musí se použít absolutní cestu začínající lomítkem (/). #}
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    {# Blok pro VLASTNÍ CSS - sem se vloží další <link> tagy nebo <style> bloky #}
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+{# HLAVNÍ OBSAH (Layout komponenty) #}
+{% block header %}
+    {# Jednoduchý Bootstrap Navbar #}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Můj Projekt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Domů</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">O nás</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{# Hlavní blok pro obsah stránky (přepisuje se vždy) #}
+<main class="container mt-4">
+    {% block content %}{% endblock %}
+</main>
+
+{% block footer %}
+    <footer class="text-center py-3 mt-5 bg-light">
+        <p>&copy; {{ "now"|date("Y") }} Můj projekt. Všechna práva vyhrazena.</p>
+    </footer>
+{% endblock %}
+
+{# Zde se načítá Bootstrap JavaScript (s Popper.js v bundle verzi) #}
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+{# Blok pro VLASTNÍ JS skripty - sem se vloží další <script> tagy #}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

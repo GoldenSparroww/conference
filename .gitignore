@@ -1,0 +1,18 @@
+# PHP závislosti
+/vendor/
+
+# IDE a editory
+# JetBrains (PhpStorm, WebStorm, atd.)
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Různé
+# Dočasné a logovací soubory
+*.log
+*.tmp
