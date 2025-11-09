@@ -10,18 +10,14 @@
     {# Zde se načítá Bootstrap CSS #}
     {# Protože adresář Public je kořenem celého webu (tzv. Document Root), musí se použít absolutní cestu začínající lomítkem (/). #}
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    {# Blok pro VLASTNÍ CSS - sem se vloží další <link> tagy nebo <style> bloky #}
-    {% block stylesheets %}{% endblock %}
 </head>
 <body>
 
-{# HLAVNÍ OBSAH (Layout komponenty) #}
+{# Navbar/header #}
 {% block header %}
-    {# Jednoduchý Bootstrap Navbar #}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">Můj Projekt</a>
+            <a class="navbar-brand" href="/">Konference XXX</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -46,14 +42,12 @@
 
 {% block footer %}
     <footer class="text-center py-3 mt-5 bg-light">
-        <p>&copy; {{ "now"|date("Y") }} Můj projekt. Všechna práva vyhrazena.</p>
+        <p>&copy; {{ "now"|date("Y") }} Jan Kopačka. Všechna práva vyhrazena.</p>
     </footer>
 {% endblock %}
 
-{# Zde se načítá Bootstrap JavaScript (s Popper.js v bundle verzi) #}
+{# Zde se načítá Bootstrap JavaScript #}
 <script src="/js/bootstrap.bundle.min.js"></script>
 
-{# Blok pro VLASTNÍ JS skripty - sem se vloží další <script> tagy #}
-{% block javascripts %}{% endblock %}
 </body>
 </html>

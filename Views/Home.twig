@@ -1,13 +1,8 @@
-{# 1. Řekneme Twigu, že tato šablona používá kostru z base.html.twig #}
 {% extends 'Base.twig' %}
 
-{# 2. Přepíšeme blok 'title' pro specifický titulek stránky #}
-{% block title %}Vítejte na hlavní stránce{% endblock %}
+{% block title %}Home{% endblock %}
 
-{# 3. Přepíšeme klíčový blok 'content' #}
 {% block content %}
-
-    {# Bootstrap Jumbotron (Card) #}
     <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Vítejte!</h1>
@@ -33,7 +28,6 @@
         </div>
     </div>
 
-    {# Příklad Bootstrap Modal komponenty (vyžaduje JS) #}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
