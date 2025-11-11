@@ -7,6 +7,10 @@ class Router
 {
     public function run(): void
     {
+        echo $_SERVER['REQUEST_METHOD'];
+        echo $_SERVER['REQUEST_URI'];
+        //$this->debug();
+
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         $segments = explode('/', $uri);
 
@@ -27,5 +31,19 @@ class Router
         }
 
         $controller->$actionName();
+    }
+
+    public function debug(): void
+    {
+        echo "=== SERVER ===\n";
+        print_r($_SERVER);
+        echo "=== HEADERS ===\n";
+        print_r(getallheaders());
+        echo "=== GET ===\n";
+        print_r($_GET);
+        echo "=== POST ===\n";
+        print_r($_POST);
+        echo "=== RAW BODY ===\n";
+        echo file_get_contents('php://input');
     }
 }

@@ -9,7 +9,7 @@
 
     {# Zde se načítá Bootstrap CSS #}
     {# Protože adresář Public je kořenem celého webu (tzv. Document Root), musí se použít absolutní cestu začínající lomítkem (/). #}
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     {# (placeholder pro dodatečné budoucí CSS) #}
     {% block stylesheets %}{% endblock %}
@@ -39,13 +39,28 @@
                         <a class="nav-link" href="#">O nás</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if session.user %}
+                        <li class="nav-item">
+                            <span class="nav-link fw-semibold">{{ session.user.nickname }}</span>
+                        </li>
+                        {% if session.user.role == 'admin' %}
+                            <!-- TODO zprovoznit -->
+                            <li class="nav-item"><a href="/admin/dashboard" class="nav-link">Admin</a></li>
+                        {% endif %}
+                        <li class="nav-item"><a href="/auth/logout" class="nav-link">Odhlásit</a></li>
+                    {% else %}
+                        <li class="nav-item"><a href="/auth/login" class="nav-link">Přihlásit</a></li>
+                        <li class="nav-item"><a href="/auth/register" class="nav-link">Registrovat</a></li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </nav>
 {% endblock %}
 
 {# Hlavní blok pro obsah stránky (přepisuje se vždy) #}
-<main class="container-lg mt-4">
+<main class="container mt-4">
     {% block content %}{% endblock %}
 </main>
 
@@ -56,7 +71,7 @@
 {% endblock %}
 
 {# Zde se načítá Bootstrap JavaScript #}
-<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 {# (placeholder pro dodatečné budoucí JS) #}
 {% block javascripts %}{% endblock %}

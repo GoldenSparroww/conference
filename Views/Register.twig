@@ -1,0 +1,36 @@
+{% extends "Base.twig" %}
+
+{% block content %}
+    <h2>Registrace</h2>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <!-- action="/auth/register/" tam byt nemusí, defaultně by to šla tam odkud jsem form. dostal -->
+    <form method="POST" action="/auth/register/">
+        <div class="mb-3">
+            <label>Nickname</label>
+            <input name="nickname" type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>First Name</label>
+            <input name="first_name" type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Last Name</label>
+            <input name="last_name" type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            <input name="email" type="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Heslo</label>
+            <input name="password" type="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Registrovat</button>
+    </form>
+
+    <p><a href="/auth/login">Zpět na přihlášení</a></p>
+{% endblock %}

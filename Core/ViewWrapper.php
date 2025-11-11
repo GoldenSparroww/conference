@@ -15,11 +15,12 @@ class ViewWrapper {
         ]);
 
         // Globální proměnné – dostupné ve všech šablonách
-        $this->twig->addGlobal('base_url', '/my_app/public');
-        $this->twig->addGlobal('app_name', 'My App');
+        // Pokud uživatel namá SESSION_COOKIE, tak vrátí prázné pole -> např. odhlášen
+        $this->twig->addGlobal('session', Session::all());
     }
 
     public function render(string $template, array $data = []): string {
+        //todo, exceptions
         return $this->twig->render($template, $data);
     }
 }
