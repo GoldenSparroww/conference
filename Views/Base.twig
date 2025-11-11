@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
 
     {# Zde se načítá Bootstrap CSS #}
     {# Protože adresář Public je kořenem celého webu (tzv. Document Root), musí se použít absolutní cestu začínající lomítkem (/). #}
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     {# (placeholder pro dodatečné budoucí CSS) #}
     {% block stylesheets %}{% endblock %}
@@ -18,9 +18,9 @@
 
 {# Navbar/header #}
 {% block header %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand" href="/">Konference XXX</a>
+            <a class="navbar-brand" href="/">Gronn 2025</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,6 +28,12 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Domů</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Plán 2025</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Publikace</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">O nás</a>
@@ -39,18 +45,18 @@
 {% endblock %}
 
 {# Hlavní blok pro obsah stránky (přepisuje se vždy) #}
-<main class="container mt-4">
+<main class="container-lg mt-4">
     {% block content %}{% endblock %}
 </main>
 
 {% block footer %}
-    <footer class="text-center py-3 mt-5 bg-light">
+    <footer class="text-center py-3 mt-5 bg-body-tertiary">
         <p>&copy; {{ "now"|date("Y") }} Jan Kopačka. Všechna práva vyhrazena.</p>
     </footer>
 {% endblock %}
 
 {# Zde se načítá Bootstrap JavaScript #}
-<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
 {# (placeholder pro dodatečné budoucí JS) #}
 {% block javascripts %}{% endblock %}
