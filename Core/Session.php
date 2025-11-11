@@ -27,7 +27,12 @@ class Session
 
     public static function destroy(): void
     {
+        // vymaže paměť, pole $_SESSION by bylo jinak stále k dispozici po zbytek aktuálního skriptu
+        $_SESSION = [];
+        // zničí session na server
         session_destroy();
+        // nechá vypršet platnost session cookie u uživatele
+        setcookie(session_name(), '', time() - 3600, '/');
     }
 
     public static function all(): array

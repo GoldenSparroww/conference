@@ -14,6 +14,7 @@ class UserModel
 
     public function findByEmail(string $email): ?array
     {
+        //TODO, měl bych ho vracet bez hesla, resp. co nejměně informací
         $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
