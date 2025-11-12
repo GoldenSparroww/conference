@@ -5,7 +5,7 @@ use App\Core\Helper;
 use Dotenv\Dotenv;
 
 class EnvHandler {
-    public static function load() {
+    public static function load(): void {
         // __DIR__ je 'C:\...\web\Public'
         // /../ znamená "jít o adresář výš" do 'C:\...\web'
         // Dotenv stačí adrsář, kde se .env nachází
