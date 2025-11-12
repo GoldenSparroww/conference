@@ -5,6 +5,9 @@ use App\Core\Controller;
 use App\Core\Session;
 use App\Models\UserModel;
 use PDO;
+use PDOException;
+use App\Core\EnvHandler;
+use App\Models\RolesID;
 
 class AuthController extends Controller
 {
@@ -14,9 +17,18 @@ class AuthController extends Controller
     public function __construct()
     {
         parent::__construct();
+        $db_type = EnvHandler::get('DB_TYPE');
+        $db_charset = EnvHandler::get('DB_CHARSET');
+        $db_host = EnvHandler::get('DB_HOST');
+        $db_name = EnvHandler::get('DB_NAME');
+        $db_user = EnvHandler::get('DB_USER');
+        $db_pass = EnvHandler::get('DB_PASS');
 
-        //TODO, env
-        $this->db = new PDO('mysql:host=localhost;dbname=conference;charset=utf8', 'root', 'root');
+        try {
+            $this->db = new PDO("$db_type:host=$db_host;dbname=$db_name;charset=$db_charset", $db_user, $db_pass);
+        } catch (PDOException) {
+            throw new PDOException("There was an error connecting to the database. Try again later.");
+        }
         $this->userModel = new UserModel($this->db);
     }
 
@@ -29,14 +41,12 @@ class AuthController extends Controller
     public function login(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
+            $email = htmlspecialchars($_POST['email']) ?? '';
+            $password = htmlspecialchars($_POST['password']) ?? '';
 
             $user = $this->userModel->verify($email, $password);
             if ($user) {
                 Session::set('user', $user);
-                //file_put_contents('log_user.txt', print_r($user, true), FILE_APPEND);
-                //file_put_contents('log_SESSION.txt', print_r($_SESSION, true), FILE_APPEND);
                 header('Location: /home/index');
                 exit;
             } else {
@@ -51,19 +61,16 @@ class AuthController extends Controller
     public function register(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //TODO, ošetřit a ne jen vyplnit prazdnymi znaky
-            $nickname = $_POST['nickname'] ?? '';
-            $first_name = $_POST['first_name'] ?? '';
-            $last_name = $_POST['last_name'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
+            $nickname = htmlspecialchars($_POST['nickname']) ?? '';
+            $first_name = htmlspecialchars($_POST['first_name']) ?? '';
+            $last_name = htmlspecialchars($_POST['last_name']) ?? '';
+            $email = htmlspecialchars($_POST['email']) ?? '';
+            $password = htmlspecialchars($_POST['password']) ?? '';
 
-            // TODO, potřebuji ještě pořešit role a její zápis do DB
             if ($this->userModel->create($nickname, $first_name, $last_name, $email, $password)) {
                 header('Location: /auth/login');
                 exit;
             } else {
-                //TODO, vyřešit errory lépe
                 echo $this->view->render('register.twig', ['error' => 'Chyba při registraci']);
                 return;
             }

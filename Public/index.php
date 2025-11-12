@@ -4,6 +4,9 @@ require_once '../vendor/autoload.php';
 use App\Core\Router;
 use App\Core\ErrorHandler;
 use App\Core\Session;
+use App\Core\EnvHandler;
+
+EnvHandler::load();
 
 Session::start();
 

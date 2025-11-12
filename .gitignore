@@ -16,3 +16,4 @@ ehthumbs.db
 # Dočasné a logovací soubory
 *.log
 *.tmp
+/.env

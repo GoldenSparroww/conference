@@ -12,14 +12,17 @@
                     Chyba
                 {% endif %}
             </h1>
-            <p class="fs-3">
+            <span class="fs-3">
                 {% if error_message is defined %}
-                    {{ error_message }}
-                    {{ error_debug }}
+                    <span class="text-break">Message: {{ error_message }}</span> <br>
+                    {% if error_file and error_line is defined %}
+                    <span class="text-break">File: {{ error_file }}</span> <br>
+                    <span class="text-break">Line: {{ error_line }}</span> <br>
+                    {% endif %}
                 {% else %}
                     Omlouváme se, došlo k chybě.
                 {% endif %}
-            </p>
+            </span>
             <a href="/" class="btn btn-light btn-lg mt-3">
                 Zpět na Homepage
             </a>

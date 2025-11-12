@@ -7,8 +7,8 @@ class Router
 {
     public function run(): void
     {
-        echo $_SERVER['REQUEST_METHOD'];
-        echo $_SERVER['REQUEST_URI'];
+        //echo $_SERVER['REQUEST_METHOD'];
+        //echo $_SERVER['REQUEST_URI'];
         //$this->debug();
 
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
@@ -16,7 +16,7 @@ class Router
 
         $controllerName = !empty($segments[0]) ? ucfirst($segments[0]) . 'Controller' : 'HomeController';
         $actionName = $segments[1] ?? 'index';
-        $controllerClass = "App\\Controllers\\$controllerName";
+        $controllerClass = Helper::path_join("App", "Controllers", $controllerName);
 
         $pageName = $segments[0];
 
