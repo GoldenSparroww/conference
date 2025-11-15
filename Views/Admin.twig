@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+
+{% block title %}Administrace{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Správa uživatelů</h1>
+
+    <div class="table-responsive">
+        <table id="usersTable" class="table table-striped align-middle">
+            <thead>
+            <tr>
+                <th data-sort="id">ID</th>
+                <th data-sort="nickname">Nick</th>
+                <th data-sort="first_name">Jméno</th>
+                <th data-sort="last_name">Příjmení</th>
+                <th data-sort="email">Email</th>
+                <th data-sort="role">Role</th>
+                <th data-sort="is_active">Aktivní</th>
+                <th>Akce</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- JS doplní dynamicky -->
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {# TODO datum je zde pro zabránění cachování, dát na konci pryč aby AJAX měl smysl #}
+    <script src="/js/Admin.js?t={{ cache_buster }}"></script>
+{% endblock %}
