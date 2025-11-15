@@ -29,11 +29,11 @@ class AdminController extends Controller
     }
 
     public function index() {
-        header('Location: /admin/dashboard');
+        header('Location: /admin/users');
         exit;
     }
 
-    public function dashboard(): void
+    public function users(): void
     {
         // TODO datum je zde pro zabránění cachování, dát na konci pryč aby AJAX měl smysl
         $timestamp = time();

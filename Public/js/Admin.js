@@ -24,18 +24,18 @@ async function loadUsers() {
             <td>${u.first_name}</td>
             <td>${u.last_name}</td>
             <td>${u.email}</td>
-            <td>
+            <td class="text-center">
                 <select class="role-select" data-id="${u.id}">
-                    <option value="author" ${u.role === 10 ? "selected" : ""}>author</option>
-                    <option value="reviewer" ${u.role === 20 ? "selected" : ""}>reviewer</option>
-                    <option value="admin" ${u.role === 100 ? "selected" : ""}>admin</option>
-                    <option value="superadmin" ${u.role === 200 ? "selected" : ""}>superadmin</option>
+                    <option value="author" ${u.role === 10 ? "selected" : ""}>Author</option>
+                    <option value="reviewer" ${u.role === 20 ? "selected" : ""}>Reviewer</option>
+                    <option value="admin" ${u.role === 100 ? "selected" : ""}>Admin</option>
+                    <option value="superadmin" ${u.role === 200 ? "selected" : ""}>SuperAdmin</option>
                 </select>
             </td>
-            <td>
+            <td class="text-center">
                 <input type="checkbox" class="active-toggle" data-id="${u.id}" ${u.is_active === 1 ? "checked" : ""}>
             </td>
-            <td>
+            <td class="text-center">
                 <button class="btn btn-sm btn-primary save-btn" data-id="${u.id}">Uložit</button>
             </td>
         `;

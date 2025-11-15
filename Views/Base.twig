@@ -44,13 +44,27 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     {% if session.user %}
-                        {% if session.user.role == 100 or session.user.role == 200 %}
-                            <li class="nav-item"><a href="/admin/dashboard" class="nav-link">ADMIN</a></li>
-                        {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Akce
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if session.user.role == 100 or session.user.role == 200 %}
+                                    <li><a class="dropdown-item" href="/admin/users">Správa uživatelů</a></li>
+                                    <li><a class="dropdown-item" href="/admin/publications">Správa publikací</a></li>
+                                {% endif %}
+                                {% if session.user.role == 20 %}
+                                    <li><a class="dropdown-item" href="/reviewer/dashboard">Moje recenze</a></li>
+                                {% endif %}
+                                {% if session.user.role == 10 %}
+                                    <li><a class="dropdown-item" href="/author/dashboard">Moje publikace</a></li>
+                                {% endif %}
+                                <li><a class="dropdown-item" href="/auth/logout">Odhlásit se</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <span class="nav-link fw-semibold">{{ session.user.nickname }}</span>
                         </li>
-                        <li class="nav-item"><a href="/auth/logout" class="nav-link">Odhlásit</a></li>
                     {% else %}
                         <li class="nav-item"><a href="/auth/login" class="nav-link">Přihlásit</a></li>
                         <li class="nav-item"><a href="/auth/register" class="nav-link">Registrovat</a></li>
