@@ -70,6 +70,7 @@ class AuthorController extends Controller {
         if ($fileData['error'] !== UPLOAD_ERR_OK) {
             $errors[] = 'Při nahrávání souboru došlo k chybě. Pravděpodobně nebyl vybrán žádný soubor.';
         } else {
+            //TODO co s tím warningem
             $fileType = mime_content_type($fileData['tmp_name']);
             $allowedTypes = [
                 'application/pdf', //pdf
