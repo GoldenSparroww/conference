@@ -36,6 +36,7 @@ class ErrorHandler
         echo $view->render('Error.twig', [
             'error_code' => $status,
             'error_message' => $this->getErrorMessage($exception),
+            //todo, dat pryc
             'error_file' => $exception->getFile(),
             'error_line' => $exception->getLine(),
         ]);

@@ -13,7 +13,7 @@ class Router
 
         $controllerName = !empty($segments[0]) ? ucfirst($segments[0]) . 'Controller' : 'HomeController';
         $actionName = $segments[1] ?? 'index';
-        $controllerClass = Helper::path_join("App", "Controllers", $controllerName);
+        $controllerClass = HelperFuncs::path_join("App", "Controllers", $controllerName);
 
         $pageName = $segments[0];
 
@@ -28,19 +28,5 @@ class Router
         }
 
         $controller->$actionName();
-    }
-
-    public function debug(): void
-    {
-        echo "=== SERVER ===\n";
-        print_r($_SERVER);
-        echo "=== HEADERS ===\n";
-        print_r(getallheaders());
-        echo "=== GET ===\n";
-        print_r($_GET);
-        echo "=== POST ===\n";
-        print_r($_POST);
-        echo "=== RAW BODY ===\n";
-        echo file_get_contents('php://input');
     }
 }

@@ -4,10 +4,6 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Core\Session;
 use App\Models\UserModel;
-use PDO;
-use PDOException;
-use App\Core\EnvHandler;
-use App\Models\RolesID;
 
 class AuthController extends Controller
 {
@@ -73,5 +69,22 @@ class AuthController extends Controller
         Session::destroy();
         header('Location: /home/index');
         exit;
+    }
+
+    public function blocked(): void
+    {
+        if (!Session::isLoggedIn()) {
+            header('Location: /auth/login');
+            exit;
+        }
+
+        $is_active = Session::get('is_active');
+
+        if ($is_active === null || $is_active == 1) {
+            header('Location: /home/index');
+            exit;
+        }
+
+        echo $this->view->render('UserBlocked.twig');
     }
 }

@@ -31,25 +31,47 @@
 
     <div class="row text-center">
         <div class="col-md-12">
-            <h2>Co můžete dělat dál?</h2>
+            <h2 class="py-3">Co můžete dělat dál?</h2>
         </div>
     </div>
 
-    <div class="row mt-3">
-        <div class="col-md-4">
-            <h3>Domovská stránka</h3>
-            <p>Vraťte se na hlavní stránku a zkuste se navigovat znovu.</p>
-            <a href="/" class="btn btn-outline-primary">Přejít</a>
+    <div class="row justify-content-center mb-3 text-center">
+        <div class="col">
+            <div class="card h-100 mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Domovská stránka</h4>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p>Vraťte se na hlavní stránku a zkuste se navigovat znovu.</p>
+                    <a href="/" class="btn btn-primary mt-auto">Přejít</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h3>Obnovit stránku</h3>
-            <p>Někdy pomůže prosté obnovení (refresh) stránky.</p>
-            <button class="btn btn-outline-secondary" onclick="window.location.reload();">Obnovit</button>
+
+        <div class="col">
+            <div class="card h-100 mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Obnovit stránku</h4>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p>Někdy pomůže prosté obnovení (refresh) stránky.</p>
+                    <button class="btn btn-primary mt-auto" onclick="window.location.reload();">Obnovit</button>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h3>Kontakt</h3>
-            <p>Pokud chyba přetrvává, kontaktujte správce webu.</p>
-            <a href="/contact" class="btn btn-outline-info">Kontaktovat</a>
+
+        <div class="col">
+            <div class="card h-100 mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Kontakt</h4>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p>Pokud chyba přetrvává, kontaktujte správce webu.</p>
+                    <a href="/contact" class="btn btn-primary mt-auto">Kontaktovat</a>
+                </div>
+            </div>
         </div>
     </div>
+
+
 {% endblock %}

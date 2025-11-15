@@ -1,0 +1,36 @@
+{% extends 'base.twig' %}
+
+{# Nastavení titulku stránky #}
+{% block title %}Účet byl deaktivován{% endblock %}
+
+{# Hlavní obsah stránky #}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card text-center border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h1 class="h3 mb-0">Účet deaktivován ️</h1>
+                </div>
+                <div class="card-body">
+                    <p class="lead">
+                        Váš uživatelský účet byl deaktivován.
+                    </p>
+                    <p>
+                        To může být z důvodu porušení našich pravidel, nebo jiných závažných důvodů.
+                    </p>
+
+                    <p class="mt-4">
+                        Pokud se domníváte, že došlo k chybě, kontaktujte prosím naši podporu.
+                    </p>
+
+                    {# Ukázkový kontakt - můžete nahradit skutečným kontaktem nebo odkazem #}
+                    <a href="mailto:podpora@vasedomena.cz" class="btn btn-danger btn-lg">Kontaktovat podporu</a>
+                </div>
+                <div class="card-footer text-body-secondary">
+                    <a class="link-offset-1" href="/auth/logout">Odhlásit se</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

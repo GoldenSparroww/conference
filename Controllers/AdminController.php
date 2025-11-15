@@ -66,7 +66,7 @@ class AdminController extends Controller
 
         $target_user_id = $body['user_id'];
         $target_user_role_new = RolesID::getValFromStr($body['role']);
-        $target_user_active_new = $body['active'] ? 1 : 0;
+        $target_user_active_new = $body['is_active'] ? 1 : 0;
 
         $target_user_role_old = $this->userModel->getRole($target_user_id);
 

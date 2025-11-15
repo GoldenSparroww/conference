@@ -20,6 +20,11 @@ class ViewWrapper {
     }
 
     public function render(string $template, array $data = []): string {
+        //pokud je uzivatel zakazan, TODO oddělit tuto logiku jinam, až bude čas
+        if (Session::isLoggedIn() and Session::get("user")["is_active"] === 0){
+            return $this->twig->render("UserBlocked.twig");
+        }
+
         //todo, exceptions
         return $this->twig->render($template, $data);
     }

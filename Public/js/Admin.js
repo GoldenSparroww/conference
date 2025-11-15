@@ -58,8 +58,8 @@ function attachHandlers() {
 
             // Získání obou hodnot
             const role = tr.querySelector(".role-select").value;
-            // Důležité: 'active' je boolean (true/false)
-            const active = tr.querySelector(".active-toggle").checked;
+            // Důležité: 'is_active' je boolean (true/false)
+            const is_active = tr.querySelector(".active-toggle").checked;
 
             if (!confirm("Opravdu uložit změny?")) return;
 
@@ -69,7 +69,7 @@ function attachHandlers() {
                 body: JSON.stringify({
                     user_id: id,
                     role: role,
-                    active: active
+                    is_active: is_active
                 })
             });
 

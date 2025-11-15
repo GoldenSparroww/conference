@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-class Helper {
+class HelperFuncs {
     public static function path_join(string ...$segments): string
     {
         // Vyčistíme každý segment od počátečních/koncových lomítek
