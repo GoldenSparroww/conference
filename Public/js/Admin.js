@@ -17,7 +17,7 @@ async function loadUsers() {
 
     users.forEach(u => {
         const tr = document.createElement("tr");
-
+        //TODO, bylo by lepší kdyby admin vůbec neviděl možnost upravovat adminy a superadminy (viz. ukázka courseware)
         tr.innerHTML = `
             <td>${u.id}</td>
             <td>${u.nickname}</td>

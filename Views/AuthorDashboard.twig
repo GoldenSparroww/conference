@@ -1,0 +1,115 @@
+{% extends "base.twig" %}
+
+{% block title %}Moje publikace{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Seznam mých článků</h1>
+
+    {% if articles is empty %}
+        <div class="alert alert-info" role="alert">
+            Zatím nemáte žádné vytvořené publikace.
+            <a href="/author/create" class="alert-link link-offset-2">Odeslat nový článek</a>.
+        </div>
+    {% else %}
+        <div class="row row-cols-1 g-4">
+            {% for article in articles %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-header d-flex flex-column flex-md-row align-items-stretch align-items-md-center p-3 gap-2">
+
+                            {# Blok pro status #}
+                            {% set status_class = 'bg-secondary' %}
+                            {% if article.state == 'new' %}
+                                {% set status_class = 'bg-primary' %}
+                                {% set status_text = 'Odesláno' %}
+                            {% elseif article.state == 'ongoing_reviews' %}
+                                {% set status_class = 'bg-secondary' %}
+                                {% set status_text = 'V recenzním řízení' %}
+                            {% elseif article.state == 'reviewed' %}
+                                {% set status_class = 'bg-info' %}
+                                {% set status_text = 'Ohodnoceno, čeká na schválení' %}
+                            {% elseif article.state == 'rejected' %}
+                                {% set status_class = 'bg-danger' %}
+                                {% set status_text = 'Zamítnuto' %}
+                            {% elseif article.state == 'accepted' %}
+                                {% set status_class = 'bg-success' %}
+                                {% set status_text = 'Přijato a publikováno' %}
+                            {% else %}
+                                {% set status_text = 'Neznámý stav' %}
+                            {% endif %}
+
+                            {# Status box #}
+                            <div class="rounded p-2 text-white {{ status_class }} text-center">
+                                <strong>{{ status_text }}</strong>
+                            </div>
+
+                            {# Hodnocení #}
+                            <div class="d-flex align-items-center flex-shrink-0 ms-md-auto justify-content-center justify-content-md-start">
+                                <span class="me-2 fw-bold">Hodnocení:</span>
+                                {% for rating in article.ratings|default([0.0, 0.0, 0.0]) %}
+                                    <span class="badge bg-secondary me-1" style="width: 40px;">
+                                        {{ rating|number_format(1, '.', '') }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-start mb-2 gap-3">
+
+                                {# Titulek #}
+                                <h4 class="card-title mb-0 text-primary">{{ article.title }}</h4>
+
+                                {# Tlačítka akcí #}
+                                <div class="d-flex flex-column flex-sm-row gap-2 flex-shrink-0" role="group" aria-label="Akce článku">
+                                    <a href="/author/edit/{{ article.id }}" class="btn btn-sm btn-outline-secondary" title="Upravit článek">
+                                        <i class="bi bi-pencil-square"></i>
+                                        {# Text se zobrazí jen na sm+ obrazovkách #}
+                                        <span class="d-none d-sm-inline"> Upravit</span>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary" title="Zobrazit detaily">
+                                        <i class="bi bi-eye"></i>
+                                        <span class="d-none d-sm-inline"> Zobrazit</span>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ article.id }}" title="Odebrat článek">
+                                        <i class="bi bi-trash"></i>
+                                        <span class="d-none d-sm-inline"> Odebrat</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <p class="card-text text-muted mb-0">
+                                {{ article.abstract|length > 200 ? article.abstract|slice(0, 200) ~ '...' : article.abstract }}
+                            </p>
+                            <small class="text-muted">Poslední úprava: {{ article.last_edited|date("d.m.Y H:i") }}</small>
+                        </div>
+                    </div>
+                </div>
+
+                {# Modal pro potvrzení smazání (pro každou dlaždici) #}
+                <div class="modal fade" id="deleteModal{{ article.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ article.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel{{ article.id }}">Potvrzení smazání</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Opravdu chcete smazat článek "{{ article.title }}"? Tato akce je nevratná.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
+                                <a href="/author/delete/{{ article.id }}" class="btn btn-danger">Smazat článek</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    {# Pro ikony v tlačítkách je dobré přidat Bootstrap Icons #}
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css' rel="stylesheet">
+{% endblock %}

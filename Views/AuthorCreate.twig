@@ -1,0 +1,80 @@
+{% extends "base.twig" %}
+
+{% block title %}Odeslat novou publikaci{% endblock %}
+
+{% block content %}
+    {% if errors is not empty %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in errors %}
+            <p class="mb-0">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-5">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Vytvoření nové publikace</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/author/submit" method="POST" enctype="multipart/form-data">
+                        {# 1. Titulek článku #}
+                        <div class="mb-3">
+                            <label for="title" class="form-label fw-bold">Titulek článku <span class="text-danger">*</span></label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="title"
+                                   name="title"
+                                   value="{{ form_data.title|default('') }}"
+                                   required
+                                   maxlength="255"
+                                   placeholder="Zadejte výstižný titulek">
+                            <div class="form-text">Maximálně 255 znaků.</div>
+                        </div>
+
+                        {# 2. Abstrakt #}
+                        <div class="mb-3">
+                            <label for="abstract" class="form-label fw-bold">Abstrakt <span class="text-danger">*</span></label>
+                            <textarea class="form-control"
+                                      id="abstract"
+                                      name="abstract"
+                                      rows="8"
+                                      required
+                                      maxlength="1000"
+                                      placeholder="Stručné shrnutí obsahu článku (max. 1000 znaků).">{{ form_data.abstract|default('') }}</textarea>
+                            <div class="form-text">Popis by měl mít maximálně 1000 znaků.</div>
+                        </div>
+
+                        {# 3. Nahrání souboru #}
+                        <div class="mb-4">
+                            <label for="file_path" class="form-label fw-bold">Nahrát soubor článku (.pdf, .docx) <span class="text-danger">*</span></label>
+                            <input class="form-control"
+                                   type="file"
+                                   id="file_path"
+                                   name="article_file"
+                                   required
+                                   accept=".pdf, .doc, .docx">
+                            <div class="form-text">Povolené formáty: PDF, DOC, DOCX. Maximální velikost souboru: 10 MB.</div>
+                        </div>
+
+                        <hr>
+
+                        {# Tlačítko pro odeslání #}
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-send me-2"></i> Odeslat publikaci
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {# Pro ikonu v tlačítku (pokud ji ještě nemáte v base.twig) #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+{% endblock %}

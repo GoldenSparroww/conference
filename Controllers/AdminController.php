@@ -6,9 +6,6 @@ use App\Core\Controller;
 use App\Core\Session;
 use App\Models\UserModel;
 use App\Models\RolesID;
-use App\Core\EnvHandler;
-use PDO;
-use PDOException;
 
 class AdminController extends Controller
 {

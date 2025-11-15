@@ -57,6 +57,7 @@
                                     <li><a class="dropdown-item" href="/reviewer/dashboard">Moje recenze</a></li>
                                 {% endif %}
                                 {% if session.user.role == 10 %}
+                                    <li><a class="dropdown-item" href="/author/create">Nová publikace</a></li>
                                     <li><a class="dropdown-item" href="/author/dashboard">Moje publikace</a></li>
                                 {% endif %}
                                 <li><a class="dropdown-item" href="/auth/logout">Odhlásit se</a></li>

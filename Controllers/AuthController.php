@@ -70,21 +70,4 @@ class AuthController extends Controller
         header('Location: /home/index');
         exit;
     }
-
-    public function blocked(): void
-    {
-        if (!Session::isLoggedIn()) {
-            header('Location: /auth/login');
-            exit;
-        }
-
-        $is_active = Session::get('is_active');
-
-        if ($is_active === null || $is_active == 1) {
-            header('Location: /home/index');
-            exit;
-        }
-
-        echo $this->view->render('UserBlocked.twig');
-    }
 }

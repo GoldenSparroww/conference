@@ -15,3 +15,5 @@ $handler->register();
 
 $router = new Router();
 $router->run();
+
+//TODO, osadit aplikaci ikonami z bootsrapu (popř. je nastahovat)
