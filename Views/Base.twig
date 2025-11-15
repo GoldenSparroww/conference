@@ -41,13 +41,12 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     {% if session.user %}
+                        {% if session.user.role == 100 or session.user.role == 200 %}
+                            <li class="nav-item"><a href="/admin/dashboard" class="nav-link">ADMIN</a></li>
+                        {% endif %}
                         <li class="nav-item">
                             <span class="nav-link fw-semibold">{{ session.user.nickname }}</span>
                         </li>
-                        {% if session.user.role == 'admin' %}
-                            <!-- TODO zprovoznit -->
-                            <li class="nav-item"><a href="/admin/dashboard" class="nav-link">Admin</a></li>
-                        {% endif %}
                         <li class="nav-item"><a href="/auth/logout" class="nav-link">Odhlásit</a></li>
                     {% else %}
                         <li class="nav-item"><a href="/auth/login" class="nav-link">Přihlásit</a></li>

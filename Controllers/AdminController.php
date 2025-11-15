@@ -12,28 +12,13 @@ use PDOException;
 
 class AdminController extends Controller
 {
-    private PDO $db;
     private UserModel $userModel;
 
     public function __construct()
     {
         parent::__construct();
 
-        // TODO, oddělit do singletonu připojení DB
-        $db_type = EnvHandler::get('DB_TYPE');
-        $db_charset = EnvHandler::get('DB_CHARSET');
-        $db_host = EnvHandler::get('DB_HOST');
-        $db_name = EnvHandler::get('DB_NAME');
-        $db_user = EnvHandler::get('DB_USER');
-        $db_pass = EnvHandler::get('DB_PASS');
-
-        try {
-            $this->db = new PDO("$db_type:host=$db_host;dbname=$db_name;charset=$db_charset", $db_user, $db_pass);
-        } catch (PDOException) {
-            throw new PDOException("Database connection failed");
-        }
-
-        $this->userModel = new UserModel($this->db);
+        $this->userModel = new UserModel();
 
         if (
             !Session::get('user') ||

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Core;
 
 use Exception;
@@ -7,10 +8,6 @@ class Router
 {
     public function run(): void
     {
-        //echo $_SERVER['REQUEST_METHOD'];
-        //echo $_SERVER['REQUEST_URI'];
-        //$this->debug();
-
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         $segments = explode('/', $uri);
 
